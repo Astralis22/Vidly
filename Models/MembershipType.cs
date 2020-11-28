@@ -14,6 +14,6 @@ namespace Vidly.Models
         public byte DiscountRate { get; set; }
         [Required]
         public string Name { get; set; }
-
+        
     }
 }
