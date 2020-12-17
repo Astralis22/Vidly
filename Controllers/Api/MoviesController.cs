@@ -13,7 +13,7 @@ namespace Vidly.Controllers.Api
 {
     public class MoviesController : ApiController
     {
-        public ApplicationDbContext _context;
+        private ApplicationDbContext _context;
 
         public MoviesController()
         {
