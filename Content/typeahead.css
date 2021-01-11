@@ -55,3 +55,8 @@
     .tt-container {
         position: relative;
     }
+
+    /*Personal changes*/
+﻿.twitter-typeahead {
+    width: 300px;
+}
