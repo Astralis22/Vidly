@@ -1,0 +1,18 @@
+﻿@model  IEnumerable<Vidly.Models.Rental>
+
+@{
+    ViewBag.Title = "Current Rentals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Current Rentals</h2>
+
+<ul>
+    @foreach (var rental in Model)
+    {
+        <li>@rental.Customer.Name @rental.Movie.Name</li>
+    }
+</ul>
+
+
+
