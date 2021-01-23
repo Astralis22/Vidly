@@ -10,7 +10,8 @@
 <ul>
     @foreach (var rental in Model)
     {
-        <li>@rental.Customer.Name @rental.Movie.Name</li>
+        <li>@rental.Customer.Name @rental.Movie.Name @rental.DateRented @rental.DateReturned</li> 
+        @Html.ActionLink("End rental", "EndRental", "Rentals", new {id = rental.Id}, new { @class = "btn btn-primary" })
     }
 </ul>
 
