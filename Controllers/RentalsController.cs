@@ -30,19 +30,22 @@ namespace Vidly.Controllers
 
         public ActionResult List()
         {
-            var rentals = _context.Rentals.Include( r => r.Customer).Include( r => r.Movie).ToList();
+            var rentals = _context.Rentals.Where( r => r.DateReturned == null ).Include( r => r.Customer).Include( r => r.Movie).ToList();
 
             return View(rentals);
         }
 
         public ActionResult EndRental(int id)
         {
-            var rental = _context.Rentals.SingleOrDefault(r => r.Id == id);
+            var rental = _context.Rentals.Include( r => r.Movie).SingleOrDefault(r => r.Id == id);
 
             if (rental == null)
                 return HttpNotFound();
 
             rental.DateReturned = DateTime.Now;
+
+            var movie = _context.Movies.Single( m => m.Id == rental.Movie.Id);
+            movie.NumberAvailable++;
 
             _context.SaveChanges();
 
