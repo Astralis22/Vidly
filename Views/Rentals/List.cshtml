@@ -7,13 +7,45 @@
 
 <h2>Current Rentals</h2>
 
-<ul>
-    @foreach (var rental in Model)
-    {
-        <li>@rental.Customer.Name @rental.Movie.Name @rental.DateRented @rental.DateReturned</li> 
-        @Html.ActionLink("End rental", "EndRental", "Rentals", new {id = rental.Id}, new { @class = "btn btn-primary" })
-    }
-</ul>
+@if (!Model.Any())
+{
+    <p>We don't have any active rentals yet.</p>
+}
+else
+{
+    <table id="rentals" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Movie</th>
+                <th>Rental date</th>
+                <th>Return</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rental in Model)
+            {
+                <tr>
+                    <td>@rental.Customer.Name</td>
+                    <td>@rental.Movie.Name</td>
+                    <td>@rental.DateRented</td>
+                    <td>@Html.ActionLink("End rental", "EndRental", "Rentals", new { id = rental.Id }, new { @class = "btn btn-primary" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#rentals").show();
+            $("#rentals").DataTable();
+        });
+
+    </script>
+}
 
 
 
