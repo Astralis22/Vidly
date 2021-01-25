@@ -28,6 +28,7 @@ namespace Vidly.Controllers
             return View();
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult List()
         {
             var rentals = _context.Rentals.Where( r => r.DateReturned == null ).Include( r => r.Customer).Include( r => r.Movie).ToList();
@@ -35,6 +36,7 @@ namespace Vidly.Controllers
             return View(rentals);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult EndRental(int id)
         {
             var rental = _context.Rentals.Include( r => r.Movie).SingleOrDefault(r => r.Id == id);
