@@ -279,6 +279,10 @@
     <Compile Include="Migrations\202012152016544_AddNumberAvailableToMovie.Designer.cs">
       <DependentUpon>202012152016544_AddNumberAvailableToMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101251750472_AddIsDelinquentToCustomer.cs" />
+    <Compile Include="Migrations\202101251750472_AddIsDelinquentToCustomer.Designer.cs">
+      <DependentUpon>202101251750472_AddIsDelinquentToCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -710,6 +714,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012152016544_AddNumberAvailableToMovie.resx">
       <DependentUpon>202012152016544_AddNumberAvailableToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101251750472_AddIsDelinquentToCustomer.resx">
+      <DependentUpon>202101251750472_AddIsDelinquentToCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

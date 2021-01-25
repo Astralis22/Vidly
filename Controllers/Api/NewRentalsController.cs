@@ -40,12 +40,16 @@ namespace Vidly.Controllers.Api
             //if (movies.Count != newRental.MovieIds.Count)
             //    return BadRequest("One or more MovieIds are invalid.");
 
+            //check if customer is delinquent
+            if(customer.IsDelinquent)
+                return BadRequest("This customer is flagged as delinquent");
+
             //logic to limit max rentals per client
             var rentals = _context.Rentals.Where(r => r.DateReturned == null).Include(r => r.Customer);
             var numOfActiveRentals = rentals.Where(r => r.Customer.Id == newRental.CustomerId).Count();
+
             if(numOfActiveRentals + movies.Count() > Limit.MaxRentalsPerCustomer)
                 return BadRequest("This customer has exceeded the maximum allowed number of active rentals");
-
             foreach (var movie in movies)
             {
                 if (movie.NumberAvailable == 0)

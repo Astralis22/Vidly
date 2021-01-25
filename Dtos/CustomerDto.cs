@@ -23,5 +23,7 @@ namespace Vidly.Dtos
 
         //[Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
+
+        public bool IsDelinquent { get; set; }
     }
 }
