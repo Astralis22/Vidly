@@ -29,6 +29,5 @@ namespace Vidly.Models
 
         [DisplayFormat(DataFormatString = @"{0:0%}")]
         public int DiscountRate { get; set; }
-
     }
 }
