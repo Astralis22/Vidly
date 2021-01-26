@@ -10,5 +10,20 @@ namespace Vidly.ViewModels
     {
         public IEnumerable<MembershipType> MembershipTypes { get; set; }
         public Customer Customer { get; set; }
+
+        public IEnumerable<Discount> Rates { get; set; }
+
+        public CustomerFormViewModel()
+        {
+            Rates = new List<Discount>
+            {
+                new Discount(0),
+                new Discount(1),
+                new Discount(2),
+                new Discount(3),
+                new Discount(4),
+                new Discount(5)
+            };
+        }
     }
 }

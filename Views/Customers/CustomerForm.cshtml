@@ -29,6 +29,11 @@
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribed to Newsletter?
         </label>
     </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.DiscountRate)
+        @Html.DropDownListFor(m => m.Customer.DiscountRate, new SelectList(Model.Rates, "Rate", "Percentage"), "Select Discount rate", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.DiscountRate)
+    </div>
     <div class="checkbox">
         <label>
             @Html.CheckBoxFor(m => m.Customer.IsDelinquent) Mark as delinquent

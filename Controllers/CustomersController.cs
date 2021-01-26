@@ -68,6 +68,7 @@ namespace Vidly.Controllers
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
                 customerInDb.IsDelinquent = customer.IsDelinquent;
+                customerInDb.DiscountRate = customer.DiscountRate;
             }
 
             _context.SaveChanges();

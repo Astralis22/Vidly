@@ -10,7 +10,7 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please enter cosutomer's name.")]
+        [Required(ErrorMessage = "Please enter customer's name.")]
         [StringLength(255)]
         public string Name { get; set; }
 
@@ -26,6 +26,9 @@ namespace Vidly.Models
         public DateTime? Birthdate { get; set; }
 
         public bool IsDelinquent { get; set; }
+
+        [DisplayFormat(DataFormatString = @"{0:0%}")]
+        public int DiscountRate { get; set; }
 
     }
 }
