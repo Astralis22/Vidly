@@ -25,5 +25,7 @@ namespace Vidly.Dtos
         public DateTime? Birthdate { get; set; }
 
         public bool IsDelinquent { get; set; }
+
+        public int DiscountRate { get; set; }
     }
 }

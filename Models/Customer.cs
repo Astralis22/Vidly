@@ -27,7 +27,6 @@ namespace Vidly.Models
 
         public bool IsDelinquent { get; set; }
 
-        [DisplayFormat(DataFormatString = @"{0:0%}")]
         public int DiscountRate { get; set; }
     }
 }

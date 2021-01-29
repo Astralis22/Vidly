@@ -13,6 +13,7 @@
     <thead>
         <tr>
             <th>Customer</th>
+            <th>Membership Type</th>
             <th>Discount Rate</th>
             <th>Delinquent</th>
             <th>Delete</th>
@@ -41,6 +42,12 @@
                     },
                     {
                         data: "membershipType.name"
+                    },
+                    {
+                        data: "discountRate",
+                        render: function (data) {
+                            return data +"%"
+                        }
                     },
                     {
                         data: "isDelinquent",
