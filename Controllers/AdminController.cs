@@ -41,11 +41,19 @@ namespace Vidly.Controllers
             return View(roles);
         }
 
+        public ActionResult NewRole()
+        {
+            var role = new IdentityRole();
+            return View("NewRole", role);
+        }
 
+        [HttpPost]
         public ActionResult SaveRole(IdentityRole role)
         {
             _context.Roles.Add(role);
-            return View();
+            _context.SaveChanges();
+
+            return RedirectToAction("Roles", "Admin");
         }
     }
 }
