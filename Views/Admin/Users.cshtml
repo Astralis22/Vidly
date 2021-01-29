@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Vidly.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.Phone</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
