@@ -14,15 +14,17 @@
     <thead>
         <tr>
             <th>Role</th>
+            <th>Delete Role</th>
 
         </tr>
     </thead>
     <tbody>
         @foreach (var role in Model)
         {
-            <tr>
-                <td>@role.Name</td>
-            </tr>
+        <tr>
+            <td>@role.Name</td>
+            <td>@Html.ActionLink("Delete", "DeleteRole", "Admin", new { id = role.Id }, new { @class = "btn btn-primary" })</td>
+        </tr>
         }
     </tbody>
 </table>

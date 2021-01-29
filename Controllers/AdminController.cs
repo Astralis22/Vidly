@@ -55,5 +55,19 @@ namespace Vidly.Controllers
 
             return RedirectToAction("Roles", "Admin");
         }
+
+        [HttpDelete]
+        public ActionResult DeleteRole(string id)
+        {
+            var roleInDb = _context.Roles.SingleOrDefault(r => r.Id == id);
+
+            if(roleInDb == null)
+                return HttpNotFound();
+
+            _context.Roles.Remove(roleInDb);
+            _context.SaveChanges();
+
+            return RedirectToAction("Roles", "Admin");
+        }
     }
 }
