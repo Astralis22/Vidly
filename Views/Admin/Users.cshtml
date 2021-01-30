@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vidly.Models.ApplicationUser>
+﻿@model IEnumerable<Vidly.ViewModels.UserViewModel>
 @{
     ViewBag.Title = "Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,14 +11,22 @@
         <tr>
             <th>Email</th>
             <th>Phone</th>
+            <th>Roles</th>           
         </tr>
     </thead>
     <tbody>
         @foreach(var user in Model)
         {
             <tr>
-                <td>@user.Email</td>
-                <td>@user.Phone</td>
+                <td>@user.User.Email</td>
+                <td>@user.User.Phone</td>
+                <td>
+                    @foreach (var role in user.Roles.ToList())
+                    {
+                        <p>@role</p>
+                    }
+                </td>
+                
             </tr>
         }
     </tbody>
