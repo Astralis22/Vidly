@@ -671,6 +671,7 @@
     <Content Include="Views\Admin\Roles.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\NewRole.cshtml" />
+    <Content Include="Views\Admin\AssignRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,14 +38,14 @@ namespace Vidly.Controllers
             var roleStore = new RoleStore<IdentityRole>(_context);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-            List<UserViewModel> userViewModels = new List<UserViewModel>();
+            var userViewModels = new List<UserViewModel>();
 
             foreach ( var user in users)
             {
                 var userViewModel = new UserViewModel
                 {
                     User = user,
-                    Roles = new List<string>()
+                    Roles = new List<string>(),
                 };
 
                 var roleIdList = user.Roles.Select(r => r.RoleId);
@@ -103,7 +103,29 @@ namespace Vidly.Controllers
             return RedirectToAction("Roles", "Admin");
         }
 
-        public ActionResult AssignRole(string userId, string roleId)
+        public ActionResult AssignRole(string id)
+        {
+
+            var user = _context.Users.Include(u => u.Roles).SingleOrDefault(u => u.Id == id);
+
+            var userViewModel = new UserViewModel
+            {
+                User = user,
+                Roles = new List<string>(),
+                RolesInDb = _context.Roles.ToList()
+            };
+
+            var roleIdList = userViewModel.User.Roles.Select ( r => r.RoleId);
+            foreach (var roleId in roleIdList)
+            {
+                var roleName = userViewModel.RolesInDb.SingleOrDefault( r => r.Id == roleId).Name;
+                userViewModel.Roles.Add(roleName);
+            }
+
+            return View(userViewModel);
+        }
+
+        public ActionResult AddToRole(string userId, string roleId)
         {
 
             var roleStore = new RoleStore<IdentityRole>(_context);
@@ -113,9 +135,10 @@ namespace Vidly.Controllers
             var userStore = new UserStore<IdentityUser>(_context);
             var userManager = new UserManager<IdentityUser>(userStore);
             var userInDb = userManager.FindById(userId);
-            userManager.AddToRole(userInDb.Id, roleInDb.Name);     
 
-            return View();
+            userManager.AddToRole(userInDb.Id, roleInDb.Name);
+
+            return RedirectToAction("Users", "Admin");
         }
     }
 }

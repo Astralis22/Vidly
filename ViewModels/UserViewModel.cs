@@ -11,5 +11,6 @@ namespace Vidly.ViewModels
     {
         public ApplicationUser User { get; set; }
         public List<string> Roles { get; set; }
+        public List<IdentityRole> RolesInDb { get; set; }
     }
 }

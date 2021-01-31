@@ -11,7 +11,8 @@
         <tr>
             <th>Email</th>
             <th>Phone</th>
-            <th>Roles</th>           
+            <th>Roles</th>      
+            <th>Assign new role</th>
         </tr>
     </thead>
     <tbody>
@@ -25,8 +26,8 @@
                     {
                         <p>@role</p>
                     }
-                </td>
-                
+                </td>     
+                <td>@Html.ActionLink("Assign", "AssignRole", "Admin", new { id = user.User.Id }, new { @class = "btn btn-primary" })</td>
             </tr>
         }
     </tbody>

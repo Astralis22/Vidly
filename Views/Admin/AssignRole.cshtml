@@ -1,0 +1,28 @@
+﻿@model Vidly.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Assign Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Assign Role</h2>
+
+<ul>
+    <li>Email: @Model.User.Email</li>
+    <li>
+        Roles:<ul>@foreach (var role in Model.Roles)
+                    {
+                        <li>@role</li>
+                    }
+              </ul>
+    </li>
+</ul>
+
+@using (Html.BeginForm("AddToRole", "Admin"))
+{  
+    @Html.Label("Roles")
+    @Html.DropDownList( "roleId", new SelectList(Model.RolesInDb, "Id", "Name"), "Select role", new { @class = "form-control" })
+    
+    @Html.Hidden("userId", Model.User.Id)
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
