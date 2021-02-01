@@ -132,8 +132,8 @@ namespace Vidly.Controllers
             var roleManager = new RoleManager<IdentityRole>(roleStore);
             var roleInDb = roleManager.FindById(roleId);
 
-            var userStore = new UserStore<IdentityUser>(_context);
-            var userManager = new UserManager<IdentityUser>(userStore);
+            var userStore = new UserStore<ApplicationUser>(_context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
             var userInDb = userManager.FindById(userId);
 
             userManager.AddToRole(userInDb.Id, roleInDb.Name);
