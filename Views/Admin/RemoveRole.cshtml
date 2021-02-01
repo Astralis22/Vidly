@@ -1,0 +1,19 @@
+﻿@model Vidly.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Remove Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Remove user from role</h2>
+
+<ul>
+    <li>Email: @Model.User.Email</li>
+    <li>
+        Roles:<ul>
+            @foreach (var role in Model.Roles)
+            {
+                <li>@role @Html.ActionLink("Remove", "RemoveFromRole", "Admin", new { userId = Model.User.Id, roleName = role  } , new { @class = "btn btn-primary" })</li>
+            }
+    </ul>
+</li>
+</ul>

@@ -13,6 +13,7 @@
             <th>Phone</th>
             <th>Roles</th>      
             <th>Assign new role</th>
+            <th>Remove role</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +29,7 @@
                     }
                 </td>     
                 <td>@Html.ActionLink("Assign", "AssignRole", "Admin", new { id = user.User.Id }, new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("Remove", "RemoveRole", "Admin", new { id = user.User.Id }, new { @class = "btn btn-primary" })</td>
             </tr>
         }
     </tbody>

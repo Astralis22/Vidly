@@ -125,6 +125,27 @@ namespace Vidly.Controllers
             return View(userViewModel);
         }
 
+        public ActionResult RemoveRole(string id)
+        {
+            var user = _context.Users.Include(u => u.Roles).SingleOrDefault(u => u.Id == id);
+
+            var userViewModel = new UserViewModel
+            {
+                User = user,
+                Roles = new List<string>(),
+                RolesInDb = _context.Roles.ToList()
+            };
+
+            var roleIdList = userViewModel.User.Roles.Select(r => r.RoleId);
+            foreach (var roleId in roleIdList)
+            {
+                var roleName = userViewModel.RolesInDb.SingleOrDefault(r => r.Id == roleId).Name;
+                userViewModel.Roles.Add(roleName);
+            }
+
+            return View(userViewModel);
+        }
+
         public ActionResult AddToRole(string userId, string roleId)
         {
 
@@ -137,6 +158,22 @@ namespace Vidly.Controllers
             var userInDb = userManager.FindById(userId);
 
             userManager.AddToRole(userInDb.Id, roleInDb.Name);
+
+            return RedirectToAction("Users", "Admin");
+        }
+
+        public ActionResult RemoveFromRole(string userId, string roleName)
+        {
+
+            //var roleStore = new RoleStore<IdentityRole>(_context);
+            //var roleManager = new RoleManager<IdentityRole>(roleStore);
+            //var roleInDb = roleManager.FindById(roleId);
+
+            var userStore = new UserStore<ApplicationUser>(_context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+            var userInDb = userManager.FindById(userId);
+
+            userManager.RemoveFromRole(userInDb.Id, roleName);
 
             return RedirectToAction("Users", "Admin");
         }
